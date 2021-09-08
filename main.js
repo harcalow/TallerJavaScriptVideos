@@ -88,11 +88,20 @@ get elements(){
  
   self.Bar.prototype = {
    down: function(){
+    
     this.y += this.speed;
+    if (this.y>300){
+      this.y=300;
+    }
  
    },
    up: function(){
     this.y -= this.speed;
+    if (this.y<0){
+      this.y=0;
+    }
+    
+ 
    },
    toString: function(){
     return "x: "+ this.x +"y: "+ this.y ;
