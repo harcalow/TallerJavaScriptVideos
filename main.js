@@ -21,6 +21,7 @@ get elements(){
 })();
 
 
+
 (function(){
   self.Ball = function(x,y,radius,board){
    this.x = x;
@@ -40,13 +41,29 @@ get elements(){
  
   self.Ball.prototype = {
     move: function(){
+
        if ((this.y<0)||(this.y>400)){
         this.direction =(this.direction);
         this.speed_y=-(this.speed_y);
        }
       this.y += (this.speed_y);
       this.x += (this.speed_x * this.direction);
-       
+      ///asd
+      if (this.x<0){
+        this.x=400;
+        this.y=200;
+        alert("Punto Jugador 1")
+        play1+=1;
+        console.log(play1);
+      }
+      if (this.x>800){
+        this.x=400;
+        this.y=200;
+        alert("Punto Jugador 2")
+        play2+=1;
+        console.log(play2);
+      }
+
     },
     get width(){
      return this.radius * 2;
@@ -159,8 +176,9 @@ get elements(){
    var hit = false;
    //se revisa si hay Colisiones horizontales
 
+   
    if(b.x + b.width >= a.x && b.x < a.x + a.width){
-    console.log("yes");
+
     //se revisa si hay Colisiones verticales
     if (b.y + b.height >= a.y && b.y < a.y + a.height) 
      hit = true;
@@ -200,6 +218,8 @@ get elements(){
    }
   }
  })();
+ var play1=0;
+ var play2=0;
  var board = new Board(800,400);
  var bar = new Bar(20,100,40,100,board);
  var bar_2 = new Bar(735,100,40,100,board);
