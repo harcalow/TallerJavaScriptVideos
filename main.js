@@ -54,14 +54,14 @@ get elements(){
         this.y=200;
         alert("Punto Jugador 1")
         play1+=1;
-        console.log(play1);
+        document.getElementById('puntosJ1').innerHTML= 'Puntos Jugador N1: '+play1;
       }
       if (this.x>800){
         this.x=400;
         this.y=200;
         alert("Punto Jugador 2")
         play2+=1;
-        console.log(play2);
+        document.getElementById('puntosJ2').innerHTML= 'Puntos Jugador N2: '+play2;
       }
 
     },
@@ -229,7 +229,8 @@ get elements(){
 
 //Parte del codigo de las teclas
  document.addEventListener("keydown",function(ev){
-   if(ev.keyCode == 87){
+
+  if(ev.keyCode == 81){
        ev.preventDefault();  
     bar.up();
     
@@ -238,11 +239,11 @@ get elements(){
     ev.preventDefault();
     bar.down();
    }
-   else if(ev.keyCode == 68){
+   else if(ev.keyCode == 76){
        ev.preventDefault();  
     bar_2.up();
    }
-   else if(ev.keyCode == 90){
+   else if(ev.keyCode == 77){
     ev.preventDefault();
     bar_2.down();
    }
