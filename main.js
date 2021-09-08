@@ -99,3 +99,89 @@ get elements(){
    }
   }
  })();
+
+ (function(){
+  self.BoardView = function(canvas,board){
+   this.canvas = canvas;
+   this.canvas.width = board.width;
+   this.canvas.height = board.height;
+   this.board = board;
+   this.cxt = canvas.getContext("2d");
+  }
+ 
+  self.BoardView.prototype = {
+   clean: function(){
+    this.cxt.clearRect(0,0,this.board.width,this.board.height);
+   },
+   draw: function(){
+    for (var i = this.board.elements.length - 1; i >= 0; i--) {
+     var el = this.board.elements[i];
+ 
+     draw(this.cxt,el);
+    };
+   },
+   check_collisions: function(){
+    for (var i = this.board.bars.length - 1; i >= 0; i--) {
+     var bar = this.board.bars[i];
+     if (hit(bar, this.board.ball)) {
+      this.board.ball.collision(bar);
+ 
+     }
+    };
+ 
+   },
+   play: function(){
+    if(this.board.playing){
+    this.clean();
+    this.draw();
+    this.check_collisions();
+    this.board.ball.move();
+     }
+   }
+ 
+  }
+ 
+  function hit(a,b){
+   //Revisa si a colisiona con b
+   var hit = false;
+   //Colisiones hirizontales
+   if(b.x + b.width >= a.x && b.x < a.x + a.width){
+ 
+    //Colisiona verticales
+    if (b.y + b.height >= a.y && b.y < a.y + a.height) 
+     hit = true;
+   }
+ 
+   //Colisión de a con b
+   if(b.x <= a.x && b.x + b.width >= a.x + a.width){
+    
+    if (b.y <= a.y && b.y + b.height >= a.y + a.height) 
+     hit = true;
+   }
+ 
+   //Colision b con a
+   if(a.x <= b.x && a.x + a.width >= b.x + b.width){
+    //Colisiona verticales
+    if (a.y <= b.y && a.y + a.height >= b.y + b.height) 
+     hit = true;
+   }
+   return hit;
+  }
+ 
+  function draw(cxt,element){
+   
+   switch(element.kind){
+    case "rectangle":
+    cxt.fillRect(element.x,element.y,element.width,element.height);
+    break;
+ 
+    case "circle":
+    cxt.beginPath();
+    cxt.arc(element.x,element.y,element.radius,0,7);
+    cxt.fill();
+    cxt.closePath();
+    break;
+   }
+  }
+ })();
+ 
