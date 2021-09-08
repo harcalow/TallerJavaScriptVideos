@@ -40,9 +40,13 @@ get elements(){
  
   self.Ball.prototype = {
     move: function(){
-       this.x += (this.speed_x * this.direction);
-       this.y += (this.speed_y);
- 
+       if ((this.y<0)||(this.y>400)){
+        this.direction =(this.direction);
+        this.speed_y=-(this.speed_y);
+       }
+      this.y += (this.speed_y);
+      this.x += (this.speed_x * this.direction);
+       
     },
     get width(){
      return this.radius * 2;
@@ -154,8 +158,9 @@ get elements(){
    //se revisa si a colisiona con b
    var hit = false;
    //se revisa si hay Colisiones horizontales
+
    if(b.x + b.width >= a.x && b.x < a.x + a.width){
- 
+    console.log("yes");
     //se revisa si hay Colisiones verticales
     if (b.y + b.height >= a.y && b.y < a.y + a.height) 
      hit = true;
