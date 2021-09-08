@@ -9,7 +9,7 @@ this.ball = null;
 this.playing = false;
 }
 
-self.Board.prototype = { // metodo que retorna las barras y las pelotas que estan dentro del tablero
+self.Board.prototype = { // Este metodo retorna las barras y las pelotas que estan dentro del tablero
 get elements(){
  var elements = this.bars.map(function(bar){
   return bar;
@@ -142,17 +142,17 @@ get elements(){
   }
  
   function hit(a,b){
-   //Revisa si a colisiona con b
+   //se revisa si a colisiona con b
    var hit = false;
-   //Colisiones hirizontales
+   //se revisa si hay Colisiones horizontales
    if(b.x + b.width >= a.x && b.x < a.x + a.width){
  
-    //Colisiona verticales
+    //se revisa si hay Colisiones verticales
     if (b.y + b.height >= a.y && b.y < a.y + a.height) 
      hit = true;
    }
  
-   //Colisión de a con b
+   //se revisa si hay colisión de a con b
    if(b.x <= a.x && b.x + b.width >= a.x + a.width){
     
     if (b.y <= a.y && b.y + b.height >= a.y + a.height) 
@@ -168,6 +168,8 @@ get elements(){
    return hit;
   }
  
+
+  //Parte donde se dibuja 
   function draw(cxt,element){
    
    switch(element.kind){
@@ -191,9 +193,8 @@ get elements(){
  var board_view = new BoardView(canvas,board);
  var ball = new Ball(350,100,10,board);
 
-
+//Parte del codigo de las teclas
  document.addEventListener("keydown",function(ev){
-   //console.log(ev.keyCode);
    if(ev.keyCode == 87){
        ev.preventDefault();  
     bar.up();
@@ -216,11 +217,8 @@ get elements(){
     board.playing = !board.playing;
   
    }
-  
-  
-  });
-  
 
+  });
   board_view.draw();
   window.requestAnimationFrame(controller);
   setTimeout(function(){
