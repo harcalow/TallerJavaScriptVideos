@@ -52,16 +52,16 @@ get elements(){
       if (this.x<0){
         this.x=400;
         this.y=200;
-        alert("Punto Jugador 1")
+        alert("Punto Jugador 2")
         play1+=1;
-        document.getElementById('puntosJ1').innerHTML= 'Puntos Jugador N1: '+play1;
+        document.getElementById('puntosJ1').innerHTML= 'Puntos Jugador N2: '+play1;
       }
       if (this.x>800){
         this.x=400;
         this.y=200;
-        alert("Punto Jugador 2")
+        alert("Punto Jugador 1")
         play2+=1;
-        document.getElementById('puntosJ2').innerHTML= 'Puntos Jugador N2: '+play2;
+        document.getElementById('puntosJ2').innerHTML= 'Puntos Jugador N1: '+play2;
       }
 
     },
